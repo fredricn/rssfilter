@@ -1,1 +1,22 @@
-readme :D
+
+	  Rssfilter - standalone rss feed filter
+
+	--------------------------------------
+
+Rssfilter is a standalone program that filters rss feeds from items
+matching pre-defined rules. Rssfilter acts as a filter layer between 
+rss feeds and whatever program is reading the feed e.i. rssfilter 
+adds filtering support for any application.
+
+
+Usage
+--------------------------------------------------------
+Rssfilter is designed to simply read the feed from stdin and output 
+the filtered version to stdout. Simple enough interface :)
+Example of usage: 
+	
+	Output to file:
+	$ wget -qO- http://example.com/feed | rssfilter > filtered-feed.xml
+	
+	With application:
+	$ wget -qO- http://example.com/feed | rssfilter | feedhandler
