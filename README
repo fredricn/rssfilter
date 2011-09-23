@@ -16,7 +16,8 @@ the filtered version to stdout. Simple enough interface :)
 Example of usage: 
 	
 	Output to file:
-	$ wget -qO- http://example.com/feed | rssfilter > filtered-feed.xml
+	$ wget -qO- http://example.com/feed | rssfilter -e pattern > filtered-feed.xml
 	
 	With application:
-	$ wget -qO- http://example.com/feed | rssfilter | feedhandler
+	$ wget -qO- http://example.com/feed | rssfilter -e pattern1 pattern2| feedhandler
+
