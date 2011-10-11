@@ -4,11 +4,11 @@ CFLAGS = -g -Wall -O2 -I/usr/include/libxml2
 LDFLAGS = -lxml2
 LIBXML=`xml2-config --cflags --libs`
 
-rssfilter: obj
-	$(CC) $(CFLAGS) $(LDFLAGS) *.o -o rssfilter
-	
-obj:
-	$(CC) $(CFLAGS) $(LDFLAGS) -c *.c
+rssfilter: rssfilter.o
+	$(CC) $(LDFLAGS) $^ -o $@
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $^
 
 all: rssfilter
 
