@@ -19,5 +19,5 @@ Example of usage:
 	$ wget -qO- http://example.com/feed | rssfilter -e pattern > filtered-feed.xml
 	
 	With application:
-	$ wget -qO- http://example.com/feed | rssfilter -e pattern1 pattern2| feedhandler
+	$ wget -qO- http://example.com/feed | rssfilter -e pattern1 pattern2 | feedhandler
 

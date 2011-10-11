@@ -228,7 +228,7 @@ char *filter(char *str, Regexfilter *filterList)
 }
 
 
-char *get_stdin(char *str) 
+char *stdin_get(char *str) 
 {
 	
 	char *pch;
@@ -256,7 +256,7 @@ char *get_stdin(char *str)
 	return str;
 }
 
-int is_ready(int fd, int timeout) 
+int stdin_ready(int fd, int timeout) 
 {
     fd_set fdset;
     struct timeval tout;
@@ -272,7 +272,7 @@ int is_ready(int fd, int timeout)
 int main(const int argc, char **argv)
 {
 	
-	char *str;
+	char *feed;
 	Regexfilter *filterList = filter_new(NULL,".*");
 	int i, j,
 		timeout = 3;
@@ -303,8 +303,8 @@ int main(const int argc, char **argv)
 	} 
 
 	/* get feed from stdin */
-	if (is_ready(fileno(stdin), timeout)) {
-		str = get_stdin(str);
+	if (stdin_ready(fileno(stdin), timeout)) {
+		feed = stdin_get(feed);
 	} else {
 		fprintf(stderr, "no feed\n");
 		return EXIT_FAILURE;
@@ -312,14 +312,14 @@ int main(const int argc, char **argv)
 	
 	
 	/* run filters */
-	str = filter(str, filterList);
+	feed = filter(feed, filterList);
 	
 	
 	/* output filtered xml */
-	printf("%s", str);
+	printf("%s", feed);
 	
 
-	free(str);
+	free(feed);
 	filter_destroy(filterList);
 	
 	return EXIT_SUCCESS;
